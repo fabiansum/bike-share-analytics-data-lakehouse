@@ -22,8 +22,28 @@ Since the data from Divvy are anonymous, fake rider and account profiles along w
 
 ### Technology Stack
 - Azure Databricks
+- Azure Data Lake Storage Gen2
+- Azure Key Vault
+- Azure Active Directory
 
 ## Solution Architecture
+![Solution Architecture](images/solution-architecture.png)
+### Dataflow
+1. Raw data is stored in landing zone container inside Azure Data Lake Storage Gen2 using Azure Storage Explorer
+2. Azure Databricks ingests the raw data.
+3. For storage:
+    - Delta Lake forms the curated layer of the data lake. It stores the refined data in an open-source format.
+    - A medallion architecture that organizes data into layers:
+        - Bronze: Holds raw data with ingestion time in parquet format
+        - Silver: Contains cleaned, filtered data in delta format
+        - Gold: Stores aggregated data that's useful for business analytics in delta format
+4. Analysis on the business requirements using Azure Databricks SQL Analytics.
+5. For data governance:
+    - Azure Key Vault securely manages secrets, keys, and certificates.
+
+References:
+- ![Modern analytics architecture with Azure Databricks](https://learn.microsoft.com/en-us/azure/architecture/solution-ideas/articles/azure-databricks-modern-analytics-architecture)
+- ![Data Lake Medallion Architecture Overview](https://www.mssqltips.com/sqlservertip/7689/data-lake-medallion-architecture-to-maintain-data-integrity/)
 
 
 ## STAR Schema Design - Gold layer
