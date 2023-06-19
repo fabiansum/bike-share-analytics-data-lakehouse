@@ -3,6 +3,10 @@
 ## Project Overview
 Divvy is a bike sharing program in Chicago, Illinois USA that allows riders to purchase a pass at a kiosk or use a mobile application to unlock a bike at stations around the city and use the bike for a specified amount of time. The bikes can be returned to the same station or to another station. The City of Chicago makes the anonymized bike trip data publicly available for projects like this where we can analyze the data.
 
+Since the data from Divvy are anonymous, fake rider and account profiles along with fake payment data to go along with the data from Divvy have been generated. The dataset looks like this:
+
+![Relational ERD for the Divvy Bikeshare Dataset (with fake data tables)](images/dend-project-erd.jpeg)
+
 ### Business Requirements
 1. Analyze the duration of each ride:
     - Based on date and time factors such as day of the week and time of day
@@ -19,7 +23,10 @@ Divvy is a bike sharing program in Chicago, Illinois USA that allows riders to p
 ### Technology Stack
 - Azure Databricks
 
-## STAR Schema Design
+## Solution Architecture
+
+
+## STAR Schema Design - Gold layer
 The STAR schema consists of two fact tables (Fact Trip and Fact Payment) and three dimension tables (Dim Calendar, Dim Rider, Dim Station). 
 ![Star Schema](images/star_schema_fabian.png)
 [Star Schema &mdash; PDF](https://github.com/fabiansum/bike-share-analytics-data-lakehouse/blob/main/pdf/star_schema_fabian.pdf)
